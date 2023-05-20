@@ -1,13 +1,13 @@
 import './css/styles.css';
 import { countryService } from './request';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
+import { debounce } from 'debounce';
 const DEBOUNCE_DELAY = 300;
 
 const input = document.getElementById('search-box');
 const info = document.querySelector('.country-info');
 
-input.addEventListener('input', inputHandler);
+input.addEventListener('input', debounce(inputHandler, DEBOUNCE_DELAY));
 
 function inputHandler() {
   if (input.value == '') {
@@ -60,3 +60,4 @@ function langCreator(lang) {
     return `<span>${key}</span>`;
   }
 }
+export { info };

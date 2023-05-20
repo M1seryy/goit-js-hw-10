@@ -1,4 +1,5 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { info } from '.';
 function countryService(name) {
   if (name.trim() == '') {
     return;
@@ -7,6 +8,7 @@ function countryService(name) {
       `https://restcountries.com/v3.1/name/${name}?fields=languages,capital,population,flags,name`
     ).then(res => {
       if (!res.ok || res.status === 404) {
+       info.innerHTML = '';
         Notify.failure('Oops, there is no country with that name');
         throw new Error('404');
       }
